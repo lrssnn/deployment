@@ -38,7 +38,7 @@ jobs:
       - name: deploy
         run: |
           cd out
-          aws lambda update-function-code --function-name ${{environment.ENVIRONMENT_PREFIX}}__${{inputs.function-name}} --zip-file fileb://$ZIPFILE
+          aws lambda update-function-code --function-name ${{vars.ENVIRONMENT_PREFIX}}__${{inputs.function-name}} --zip-file fileb://$ZIPFILE
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
