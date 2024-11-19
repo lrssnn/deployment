@@ -43,10 +43,10 @@ jobs:
       
   deploy-lambda-one-test:
     needs: test
-    environment: test
     uses: ./.github/workflows/lambda_deploy.yml
     secrets: inherit
     with:
       function-name: LambdaOne
       project-name: LambdaOne
       project-path: LambdaOne/src/LambdaOne
+      target-environment: test
