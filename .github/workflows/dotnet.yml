@@ -39,3 +39,15 @@ jobs:
         name: bin
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
+  deploy-test:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Publish
+        run: dotnet publish
+      - name: zip
+        run: cat "zip"
+      
