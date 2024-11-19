@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -24,5 +22,19 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: bin
+        path: |
+          bin
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download build
+      uses: actions/download-artifact@v4
+      with:
+        name: bin
     - name: Test
       run: dotnet test --no-build --verbosity normal
