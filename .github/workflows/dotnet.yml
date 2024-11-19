@@ -28,6 +28,7 @@ jobs:
         name: bin
         path: |
           **/bin/
+
   test:
     needs: build
     runs-on: ubuntu-latest
@@ -40,27 +41,12 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
       
-  deploy-test:
-    environment: test
+  deploy-lambda-one-test:
     needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Publish
-        run: dotnet publish LambdaOne/src/LambdaOne/LambdaOne.csproj --output publish/LambdaOne
-      - name: zip
-        run: |
-          mkdir out
-          export VERSION=1.0.${{github.run_number}}
-          export ZIPFILE=LambdaOne.$VERSION.zip
-          echo "ZIPFILE=LambdaOne.$VERSION.zip" >> "$GITHUB_ENV"
-          zip ./out/$ZIPFILE ./publish/LambdaOne/*
-      - name: deploy
-        run: |
-          cd out
-          aws lambda update-function-code --function-name test__LambdaOne --zip-file fileb://$ZIPFILE
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: 'ap-southeast-2'
+    environment: test
+    uses: ./.github/workflows/lambda_deploy.yml
+    secrets: inherit
+    with:
+      function-name: LambdaOne
+      project-name: LambdaOne
+      project-path: LambdaOne/src/LambdaOne
