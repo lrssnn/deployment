@@ -50,3 +50,13 @@ jobs:
       project-name: LambdaOne
       project-path: LambdaOne/src/LambdaOne
       target-environment: test
+      
+  deploy-lambda-two-test:
+    needs: test
+    uses: ./.github/workflows/lambda_deploy.yml
+    secrets: inherit
+    with:
+      function-name: LambdaTwo
+      project-name: LambdaTwo
+      project-path: LambdaTwo/src/LambdaTwo
+      target-environment: test
