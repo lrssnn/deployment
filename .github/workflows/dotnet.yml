@@ -56,7 +56,8 @@ jobs:
           zip ./out/$ZIPFILE ./publish/LambdaOne/*
       - name: deploy
         run: |
-          aws lambda update-function-code --function-name test__LambdaOne --zip-file fileb://out/$ZIPFILE
+          cd out
+          aws lambda update-function-code --function-name test__LambdaOne --zip-file fileb://$ZIPFILE
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
