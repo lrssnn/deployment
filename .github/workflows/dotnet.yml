@@ -60,3 +60,23 @@ jobs:
       project-name: LambdaTwo
       project-path: LambdaTwo/src/LambdaTwo
       target-environment: test
+      
+  deploy-lambda-one-uat:
+    needs: deploy-lambda-one-test
+    uses: ./.github/workflows/lambda_deploy.yml
+    secrets: inherit
+    with:
+      function-name: LambdaOne
+      project-name: LambdaOne
+      project-path: LambdaOne/src/LambdaOne
+      target-environment: uat
+  
+  deploy-lambda-two-uat:
+    needs: deploy-lambda-two-test
+    uses: ./.github/workflows/lambda_deploy.yml
+    secrets: inherit
+    with:
+      function-name: LambdaTwo
+      project-name: LambdaTwo
+      project-path: LambdaTwo/src/LambdaTwo
+      target-environment: uat
