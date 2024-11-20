@@ -54,7 +54,7 @@ jobs:
     secrets: inherit
     with:
       function-name: LambdaOne
-      artifact-name: ${{needs.build-lambda-one.outputs.artifact-name}}
+      artifact-name: ${{needs.build-lambda-one.outputs.artifact}}
       target-environment: test
       
 #  deploy-lambda-two-test:
