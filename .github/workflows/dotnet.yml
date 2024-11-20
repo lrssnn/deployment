@@ -74,7 +74,7 @@ jobs:
       target-environment: test
 
   deploy-lambda-one-uat:
-    needs: deploy-lambda-one-test
+    needs: [build-lambda-one, deploy-lambda-one-test]
     uses: ./.github/workflows/lambda_deploy.yml
     secrets: inherit
     with:
@@ -83,7 +83,7 @@ jobs:
       target-environment: uat
 
   deploy-lambda-two-uat:
-    needs: deploy-lambda-two-test
+    needs: [build-lambda-two, deploy-lambda-two-test]
     uses: ./.github/workflows/lambda_deploy.yml
     secrets: inherit
     with:
