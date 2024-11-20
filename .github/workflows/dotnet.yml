@@ -30,14 +30,14 @@ jobs:
     uses: ./.github/workflows/build_and_pack.yml
     with:
       project-name: LambdaOne
-      project-path: LambdaOne/src/LambdaOne
+      project-path: LambdaOne
       
   build-lambda-two:
     needs: test
     uses: ./.github/workflows/build_and_pack.yml
     with:
       project-name: LambdaTwo
-      project-path: LambdaTwo/src/LambdaTwo
+      project-path: LambdaTwo
       
   deploy-lambda-one-test:
     needs: build-lambda-one
