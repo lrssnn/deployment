@@ -1,0 +1,34 @@
+name: Build and Pack
+
+on:
+  workflow_call:
+    inputs: 
+      project-name:
+        required: true
+        type: string
+      project-path:
+        required: true
+        type: string
+
+jobs:
+  deploy-function:
+    outputs:
+      artifact-name: $ZIPFILE
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Publish
+        run: dotnet publish ${{inputs.project-path}}/${{inputs.project-name}}.csproj --output publish/${{inputs.project-name}}
+      - name: zip
+        run: |
+          mkdir out
+          export VERSION=1.0.${{github.run_number}}
+          export ZIPFILE=${{inputs.project-name}}.$VERSION.zip
+          echo "ZIPFILE=${{inputs.project-name}}.$VERSION.zip" >> "$GITHUB_ENV"
+          zip ./out/$ZIPFILE ./publish/${{inputs.project-name}}/*
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: $ZIPFILE
+          path: out/$ZIPFILE

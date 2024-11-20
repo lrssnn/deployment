@@ -1,6 +1,3 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: Deploy a Lambda
 
 on:
@@ -9,10 +6,7 @@ on:
       function-name:
         required: true
         type: string
-      project-name:
-        required: true
-        type: string
-      project-path:
+      artifact-name:
         required: true
         type: string
       target-environment:
@@ -24,21 +18,15 @@ jobs:
     environment: ${{inputs.target-environment}}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Publish
-        run: dotnet publish ${{inputs.project-path}}/${{inputs.project-name}}.csproj --output publish/${{inputs.project-name}}
-      - name: zip
-        run: |
-          mkdir out
-          export VERSION=1.0.${{github.run_number}}
-          export ZIPFILE=${{inputs.project-name}}.$VERSION.zip
-          echo "ZIPFILE=${{inputs.project-name}}.$VERSION.zip" >> "$GITHUB_ENV"
-          zip ./out/$ZIPFILE ./publish/${{inputs.project-name}}/*
+      - name: Get artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{inputs.artifact-name}}
       - name: deploy
         run: |
           cd out
-          aws lambda update-function-code --function-name ${{vars.ENV_PREFIX}}${{inputs.function-name}} --zip-file fileb://$ZIPFILE
+          ls -R
+          aws lambda update-function-code --function-name ${{vars.ENV_PREFIX}}${{inputs.function-name}} --zip-file fileb://${{inputs.artifact-name}}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
