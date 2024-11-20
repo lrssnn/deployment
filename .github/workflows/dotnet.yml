@@ -48,6 +48,14 @@ jobs:
       project-name: LambdaOne
       project-path: LambdaOne/src/LambdaOne
       
+  print-output:
+    needs: build-lambda-one
+    runs-on: ubuntu-latest
+    steps:
+    - name: print
+      run: |
+        echo ${{needs.build-lambda-one.outputs.artifact}}
+      
   deploy-lambda-one-test:
     needs: build-lambda-one
     uses: ./.github/workflows/lambda_deploy.yml
