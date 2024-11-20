@@ -24,8 +24,6 @@ jobs:
           name: ${{inputs.artifact-name}}
       - name: deploy
         run: |
-          cd out
-          ls -R
           aws lambda update-function-code --function-name ${{vars.ENV_PREFIX}}${{inputs.function-name}} --zip-file fileb://${{inputs.artifact-name}}
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
