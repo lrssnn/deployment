@@ -1,8 +1,5 @@
 name: Deploy a Lambda
 
-permissions:
-  actions: read
-
 on:
   workflow_call:
     inputs: 
