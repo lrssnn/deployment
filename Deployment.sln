@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaOne", "LambdaOne\src\LambdaOne\LambdaOne.csproj", "{1B1AB90D-E689-4172-BE74-A7AAE5FC079A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaOne", "LambdaOne\LambdaOne.csproj", "{1B1AB90D-E689-4172-BE74-A7AAE5FC079A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLib\CommonLib.csproj", "{3CAD3183-0EFC-4CC2-89FD-78945A661EF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaTwo", "LambdaTwo\src\LambdaTwo\LambdaTwo.csproj", "{C7D965D7-FB24-4B49-B2B7-E06EFFBB19AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaTwo", "LambdaTwo\LambdaTwo.csproj", "{C7D965D7-FB24-4B49-B2B7-E06EFFBB19AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib.Tests", "CommonLib.Tests\CommonLib.Tests.csproj", "{3CAA896A-A361-4AA8-B70D-6E0121350D7C}"
 EndProject

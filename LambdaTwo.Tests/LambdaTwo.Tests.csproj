@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LambdaTwo\src\LambdaTwo\LambdaTwo.csproj" />
+    <ProjectReference Include="..\LambdaTwo\LambdaTwo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LambdaOne\src\LambdaOne\LambdaOne.csproj" />
+    <ProjectReference Include="..\LambdaOne\LambdaOne.csproj" />
   </ItemGroup>
 
   <ItemGroup>
