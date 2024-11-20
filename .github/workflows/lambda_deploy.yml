@@ -12,6 +12,20 @@ on:
       target-environment:
         required: true
         type: string
+  workflow_dispatch:
+    inputs: 
+      function-name:
+        description: "Function name to be updated, independent of the environment"
+        required: true
+        type: string
+      artifact-name:
+        description: "Name of the github artifact to be deployed"
+        required: true
+        type: string
+      target-environment:
+        description: "Environment to be deployed to"
+        required: true
+        type: environment
 
 jobs:
   deploy-function:
