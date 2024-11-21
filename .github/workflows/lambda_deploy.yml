@@ -40,7 +40,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{inputs.artifact-name}}
-          run-id: ${{input.run-id}}
+          run-id: ${{inputs.run-id}}
       - name: deploy
         run: |
           aws lambda update-function-code --function-name ${{vars.ENV_PREFIX}}${{inputs.function-name}} --zip-file fileb://${{inputs.artifact-name}}
