@@ -41,6 +41,7 @@ jobs:
         with:
           name: ${{inputs.artifact-name}}
           run-id: ${{inputs.run-id}}
+          github-token: ${{secrets.GH_PAT}}
       - name: deploy
         run: |
           aws lambda update-function-code --function-name ${{vars.ENV_PREFIX}}${{inputs.function-name}} --zip-file fileb://${{inputs.artifact-name}}

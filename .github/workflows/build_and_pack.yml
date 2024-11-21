@@ -40,4 +40,3 @@ jobs:
         with:
           name: ${{steps.zip.outputs.artifact}}
           path: out/${{steps.zip.outputs.artifact}}
-          github-token: ${{secrets.GH_PAT}}
