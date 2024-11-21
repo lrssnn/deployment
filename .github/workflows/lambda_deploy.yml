@@ -1,8 +1,5 @@
 name: Deploy a Lambda
 
-permissions:
-  actions: read
-
 on:
   workflow_call:
     inputs: 
@@ -29,6 +26,10 @@ on:
         description: "Environment to be deployed to"
         required: true
         type: environment
+      run-id:
+        description: "Run number that generated the target artifact"
+        required: true
+        type: number
 
 jobs:
   deploy-function:
@@ -39,7 +40,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{inputs.artifact-name}}
-          github-token: ${{secrets.GH_PAT}}
+          run-id: ${{input.run-id}}
       - name: deploy
         run: |
           aws lambda update-function-code --function-name ${{vars.ENV_PREFIX}}${{inputs.function-name}} --zip-file fileb://${{inputs.artifact-name}}
