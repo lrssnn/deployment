@@ -27,7 +27,7 @@ on:
         required: true
         type: environment
       run-id:
-        description: "Run number that generated the target artifact"
+        description: "Run ID that generated the target artifact(not the run number...)"
         required: true
         type: number
 
